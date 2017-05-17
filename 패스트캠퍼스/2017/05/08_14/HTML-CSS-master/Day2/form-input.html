@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h3>Input tags</h3>
+  <form action="">
+    <!-- input#username[type=text] -->
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    <input type="radio" name="radio"><br>
+    <input type="button" value="Button"><br>
+    <input type="file" name="file"><br>
+    <input type="submit"><br>
+    <input type="reset"><br>
+    <input type="hidden" name="hidden" value="hiddenValue"><br>
+  </form>
+  <h3>Radio</h3>
+  <form action="">
+    <input type="radio" name="radio-name" value="a">
+    <input type="radio" name="radio-name" value="b">
+    <button type="submit">전송</button>
+  </form>
+
+  <h3>Label</h3>
+  <!-- form>(div>label>input[type=text])+(div>label+input[type=text]) -->
+  <form action="">
+    <div>
+      <label>ID <input type="text"></label>
+    </div>
+    <div>
+      <label for="username">Username</label>
+      <input type="text" id="username">
+    </div>
+  </form>
+
+  <h3>select</h3>
+  <select name="number" id="" size="2" multiple>
+    <!-- option[value=$]*4 -->
+    <option value="1">First</option>
+    <option value="2">Second</option>
+    <option value="3">Third</option>
+    <option value="4">Fourth</option>
+  </select>
+
+  <h3>select - optgroup</h3>
+  <select name="optgroup-select" id="">
+    <!-- (optgroup[label=]>(option[value=]*3))*2 -->
+    <optgroup label="Fruits">
+      <option value="apple">Apple</option>
+      <option value="banana">Banana</option>
+      <option value="orange">Orange</option>
+    </optgroup>
+    <optgroup label="Colors">
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+    </optgroup>
+  </select>
+
+  <h3>fieldset</h3>
+  <form action="">
+    <fieldset>
+      <legend>Login</legend>
+      <label>username : <input type="text"></label>
+      <label>password : <input type="password"></label>
+    </fieldset>
+  </form>
+</body>
+</html>
