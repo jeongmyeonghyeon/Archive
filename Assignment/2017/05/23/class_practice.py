@@ -1,36 +1,39 @@
-class Whitehand:
+class Hanryang:
+    '''놀고먹는 한량 생성 클래스'''
     def __init__(self, name, gender, age):
         self.name = name
         self.gender = gender
-        self.__age = age
+        self.age = age
+        self.__hp = 5
+
+    def hanryang_info(self):
+        print("{}세 {} 한량, {} 이 생성됐습니다.(체력: {})".format(self.age, self.gender, self.name, self.hp))
 
     def play(self, anything):
-        print("{}세 {}, {}이/가 ".format(self.__age, self.gender, self.name))
+        print("{}세 {}, {} 님이 ".format(self.age, self.gender, self.name))
         anything.play()
 
     @property
-    def age(self):
-        return self.__age
+    def hp(self):
+        return self.__hp
 
-    @age.setter
-    def set(self, new_age):
-        self.__age = new_age
+    @hp.setter
+    def hp(self, add_hp):
+        self.__hp = add_hp
 
 class Something:
-    def __init__(self, name, friend, place):
+    def __init__(self, name):
         self.name = name
-        self.friend = friend
-        self.place = place
 
     def play(self):
-        print('{}와 {}에서 {} 을/를 하고 논다.'.format(self.friend, self.place, self.name))
+        print('{} 를 하고 논다.'.format(self.name))
 
 class Watching_tv(Something):
 
     def play(self):
-        print('{}와 {}에서 {} 을/를 보고 논다.'.format(self.friend, self.place, self.name))
+        print('{} 를 보고 논다.'.format(self.name))
 
 class Play_game(Something):
 
     def play(self):
-        print('{}와 {}에서 {} 을/를 하고 논다.'.format(self.friend, self.place, self.name))
+        print('{} 을 하고 논다.'.format(self.name))
