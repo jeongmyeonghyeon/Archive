@@ -11,6 +11,8 @@ new_hanryang = Hanryang(hanryang_name, hanryang_gender, hanryang_age)
 new_hanryang.hanryang_info()
 
 # 한량의 체력이 남아있으면 놀이 선택 반복 출력
+# 체력이 떨어지면 반복문을 종료
+# 놀때마다 체력 1씩 감소
 while new_hanryang.hp:
     print("뭘 하고 놀까요? 번호를 선택해주세요")
     select_num = input("1.무언가 2.티비보기 3.게임하기 0. 그만놀기: ")
