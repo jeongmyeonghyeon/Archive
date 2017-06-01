@@ -1,0 +1,12 @@
+첫 번째 템플릿!
+
+일단 POST의 템플릿 파일(HTML)들이 있을 디렉토리를 생성해야겠지(!)
+* djangogirls에서는 blog 디렉토리 하위 디렉토리로 template-blog 템플릿을 만들었지만, 이한영강사님 수업에서는 template이 아예 별도로 관리되는 구조로 사용했다. (나도 이게 좋음)
+* mysite/setting.py 에서 TEMPLATES 리스트의 ‘DIRS’ 키 값에(그니까 결국 템플릿의 경로) BASE_DIR 과 os.path.join 를 사용하여 template 경로를 추출 TEMPLATE_DIR에 할당하여 앞서 말한 값에 넣어준다.
+* BASE_DIR 은 ROOT DIRECTORY의 경로!
+* 앞서 view에서 반환하는 html을 ‘blog/post_list.html’로 하였으니까 template-blog 구조로 디렉토리를 만들어서 html을 넣는것!
+* setting.py TEMPLATES 의 경로는 결국 말그대로 template까지의 경로로 요청이 왔을 때 해당 html을 찾아서 rendering하는건 view.py가 하는거고, 그건 url.py가 사용자의 요청이 들어왔을 때 url의 패턴을 찾았을 때 views.post_list 를 실행하는거고,…
+
+* html 가져왔으면, 반은 다 한거지!~~~!
+
+>>> 지금까지 한게 결국 로컬ip로 접속해서 첫 페이지를 html로 보여주는걸 한거

@@ -1,0 +1,70 @@
+객체
+
+현실에 존재하는 것을 속성(Attribute)과 행위(Method)로 나타내는 것
+
+- Post 객체
+	- 속성
+		- title(제목)
+		- text(내용)
+		- author(글쓴이)
+		- created_date(작성일)
+		- published_date(게시일)
+	- 메서드
+		- publish
+
+장고 모델
+
+장고 안의 모델은 객체의 특별한 종류, 이 모델을 저장하면 그 내용이 데이터베이스에 저장되는 것이 특별한 점
+* sqlite 데이터베이스는 기본 장고 데이터베이스 어댑터다!
+* 어댑터 공부는 나중에…
+
+어플리케이션 만들기
+
+python manage.py startapp blog
+
+mysite/setting.py 에서 INSTALLED_APPS 에 blog 추가
+* 애플리케이션을 생성한 후 장고에 사용해야 한다고 알려준다.
+* 그렇다는 얘기는 다른 django.contrib.(…) 들도 어떤 애플리케이션들…
+
+```
+from django.db import models
+from django.utils import timezone
+
+# [Model field reference](https://docs.djangoproject.com/en/1.10/ref/models/fields/#field-types)
+
+# class는 특별한 키워드로 객체를 정의한다는 것을 알려줍니다.
+# Post는 모델의 이름입니다 (특수문자와 공백 제외한다면) 다른 이름을 붙일 수도 있습니다. 항상 클래스 이름의 첫글자는 대문자로 써야 합니다.
+# models는 Post가 장고 모델임을 의미합니다 이 코드 때문에 장고는 Post가 데이터베이스에 저장되어야 한다고 알게 됩니다.
+class Post(models.Model):
+    # models.ForeignKey - 다른 모델이 대한 링크를 의미합니다.
+    author = models.ForeignKey('auth.User')
+    # models.CharField - 글자 수가 제한된 텍스트를 정의할 때 사용합니다 글 제목같이 짧은 문자열 정보를 저장할때 사용합니다.
+    title = models.CharField(max_length=200)
+    # models.TextField - 글자 수에 제한이 없는 긴 텍스트를 위한 속성입니다.
+    text = models.TextField()
+    # models.DateTimeField - 날짜와 시간을 의미합니다.
+    created_date = models.DateTimeField(
+        default=timezone.now
+    )
+    published_date = models.DateTimeField(
+        blank=True, null=True
+    )
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title
+```
+
+데이터베이스에 모델을 위한 테이블 만들기
+
+python manage.py makemigrations blog
+* 이 명령어를 통해 migrate를 하는 것이 아니다.
+* migration file 을 준비하는 것일 뿐이다.
+
+python manage.py migrate blog
+* 실제 데이터베이스에 모델을 추가
+
+sqlite3 > 열기 > 해당디렉토리의 db.sqlite3 를 열어 확인

@@ -1,0 +1,9 @@
+```
+from django.contrib import admin
+from .models import Post
+
+admin.site.register(Post)
+```
+
+python manage.py createsuperuser
+* id, password 입력(email 건너띄어도 됨)

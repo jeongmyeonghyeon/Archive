@@ -1,0 +1,42 @@
+장고 ORM과 쿼리셋(QuerySets)
+
+ORM 너무 신기… 쿼리셋은 전달받은 모델의 객체 목록이고…
+
+장고 쉘(shell)
+
+python manage.py shell
+
+모든 객체 조회하기
+
+Post.objects.all()
+* Post의 모든 속성을 조회(select * from post)
+
+from blog.models import Post
+* 우리가 처음에 blog.models에 생성해놓은 Post 객체를 불러오기
+
+객체 생성하기
+Post.objects.create(author=me, title=‘Sample title’, text=‘Test’)
+* 위의 명령을 실행하면 오류가 난다.
+* 오류1. Post 객체가 없다.
+* 오류1를 해결하기 위해선, from blog.models import Post를 해준다.
+(blog/models.py에 만들어 놓은 Post 객체를 가져와 사용하겠음!)
+* 오류2. 작성자 author의 me에 아무 정보가 없다.
+* 오류2를 해결하기 위해선, from django.contrib.auth.models import User 를 가져와 담아야지…
+* me = User.objects.all()
+
+필터링하기(where)
+
+Post.objects.filter(author=me)
+
+Post.objects.filter(title__contains=‘title’)
+
+* title__contains 같은거나 published_date__lte 같은 부분을 잘 모르겠다.
+* 장고 문서에 SQL로는 어떻게인지 다 적혀있음
+
+정렬하기(orderby)
+Post.objects.order_by(‘created_date’) 그냥 사용하면, asc(ascending: 오름차순)
+Post.objects.order_by(‘-created_date’) -가 붙으면, desc(descending: 내림차순)
+
+쿼리셋 연결하기(chaining)
+
+(where도 사용하고 orderby도 사용하고)

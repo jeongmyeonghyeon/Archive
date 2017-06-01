@@ -1,7 +1,10 @@
-def average(list):
-    # 함수를 완성해서 매개변수 list의 평균값을 return하도록 만들어 보세요.
-    return sum(list)/len(list)
+def findLargestSquare(board):
+    answer = 0
 
-# 아래는 테스트로 출력해 보기 위한 코드입니다.
-list = [5,3,4]
-print("평균값 : {}".format(average(list)));
+    return answer
+
+#아래 코드는 출력을 위한 테스트 코드입니다.
+
+testBoard = [['X','O','O','O','X'],['X','O','O','O','O'],['X','X','O','O','O'],['X','X','O','O','O'],['X','X','X','X','X']]
+print(findLargestSquare(testBoard))
+print(testBoard[0][1])

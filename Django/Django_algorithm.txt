@@ -1,0 +1,5 @@
+HTTP Request > URLS(urls.py) > Forward request to appropriate view > View(views.py) > HTTP Response(HTML)
+						Model(models.py) < >
+					  Template(<filename>.html)>
+
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction

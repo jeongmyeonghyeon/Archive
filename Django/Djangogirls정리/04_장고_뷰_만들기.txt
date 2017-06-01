@@ -1,0 +1,17 @@
+장고 뷰 만들기
+
+뷰(view)는 애플리케이션의 “로직”을 넣는 곳
+모델에서 필요한 정보를 받아와서 템플릿에 전달하는 역할
+
+```
+from django.shortcuts import render
+
+def post_list(request):
+    return render(request, 'blog/post_list.html', {})
+```
+
+post_list 함수, request를 넘겨받아 render메서드를 호출,
+호출하여 받은(return) blog/post_list.html 템플릿을 보여준다.
+* view가 controller…! 재미난(!) 일들을 처리…
+* template가 html…
+* MVC > MTV
