@@ -1,10 +1,14 @@
-def findLargestSquare(board):
-    answer = 0
+def rm_small(mylist):
+    # 함수를 완성하세요
+    lowest_num_idx = 0
+    for i in range(len(mylist) - 1):
+        if mylist[lowest_num_idx] > mylist[i + 1]:
+            lowest_num_idx = mylist.index(mylist[i + 1])
 
-    return answer
+    del mylist[lowest_num_idx]
+    return mylist
 
-#아래 코드는 출력을 위한 테스트 코드입니다.
 
-testBoard = [['X','O','O','O','X'],['X','O','O','O','O'],['X','X','O','O','O'],['X','X','O','O','O'],['X','X','X','X','X']]
-print(findLargestSquare(testBoard))
-print(testBoard[0][1])
+# 아래는 테스트로 출력해 보기 위한 코드입니다.
+my_list = [4, 3, 2, 1]
+print("결과 {} ".format(rm_small(my_list)))
