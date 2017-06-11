@@ -184,6 +184,9 @@
 *__Spanning multi-valued relationships__*
 
 - 그냥... ManyToManyField 이건 역참조 ForeignKey던 위와 같던 방식으로 다 된다?는... 아닌거 같은데 일단 패스
+- `filter()` 할때 (조건,조건) 이면 and / (조건).filter(조건) 는 말그대로 두번 필터링. 첫번째 실행 쿼리 결과 한번, 두번째 실행 쿼리 결과 한번
+- (조건).filter(조건) 는 쿼리를 따로 실행하기 때문이다.
+- `filter(조건, 조건)`와 `exclude(조건, 조건)` 의 작동 방식이 다르다.
 
 -
 
