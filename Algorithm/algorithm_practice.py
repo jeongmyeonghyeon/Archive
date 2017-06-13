@@ -1,11 +1,21 @@
-# strToInt 메소드는 String형 str을 매개변수로 받습니다.
-# str을 숫자로 변환한 결과를 반환하도록 strToInt를 완성하세요.
-# 예를들어 str이 "1234"이면 1234를 반환하고, "-1234"이면 -1234를 반환하면 됩니다.
-# str은 부호(+,-)와 숫자로만 구성되어 있고, 잘못된 값이 입력되는 경우는 없습니다.
-
-def strToInt(str):
-    return int(str)
+# findKim 함수(메소드)는 String형 배열 seoul을 매개변수로 받습니다.
+#
+# seoul의 element중 "Kim"의 위치 x를 찾아, "김서방은 x에 있다"는 String을 반환하세요.
+# seoul에 "Kim"은 오직 한 번만 나타나며 잘못된 값이 입력되는 경우는 없습니다.
 
 
-# 아래는 테스트로 출력해 보기 위한 코드입니다.
-print(strToInt("-1234"))
+def findKim(seoul):
+    kimIdx = 0
+    # 함수를 완성하세요
+    for name in seoul:
+        if name == "Kim":
+            kimIdx = seoul.index(name)
+
+    return "김서방은 {}에 있다".format(kimIdx)
+
+
+# 실행을 위한 테스트코드입니다.
+print(findKim(["Queen", "Tod", "Kim"]))
+
+# 문자열 곱하기는 아니고...
+# 슬라이스로 해야겠냉
