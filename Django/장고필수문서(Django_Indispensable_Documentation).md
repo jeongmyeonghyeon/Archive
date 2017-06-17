@@ -1,4 +1,4 @@
-# Django\_Indispensable\_Documentation
+# 장고필수문서(Django\_Indispensable\_Documentation)
 
 > 강사님 추천!  
 > Django 사용을 위해 필수적으로 읽어야 할 문서 목록(20개)
