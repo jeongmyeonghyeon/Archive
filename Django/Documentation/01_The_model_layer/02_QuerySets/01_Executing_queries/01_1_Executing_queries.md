@@ -1,6 +1,4 @@
-# Django_The model layer 정리
-
-### QuerySets: Executing queries
+### Making queries
 
 <br>
 

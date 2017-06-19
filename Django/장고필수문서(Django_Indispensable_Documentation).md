@@ -52,14 +52,14 @@
 
 	- The basics
 
-		- [Overview]
+		- [Overview][templates-overview]
 
 	- For designers
 
 		- [Language overview]
 		- [Built-in tags and filters]
 
-[Overview]: https://docs.djangoproject.com/en/1.11/topics/templates/
+[templates-overview]: https://docs.djangoproject.com/en/1.11/topics/templates/
 
 [Language overview]: https://docs.djangoproject.com/en/1.11/ref/templates/language/
 
@@ -71,7 +71,7 @@
 
 	- The basics
 
-		- [Overview]
+		- [Overview][forms-overview]
 		- [Form API]
 		- [Built-in fields]
 		- [Built-in widgets]
@@ -80,7 +80,7 @@
 
 		- [Forms for models]
 
-[Overview]: https://docs.djangoproject.com/en/1.11/topics/forms/
+[forms-overview]: https://docs.djangoproject.com/en/1.11/topics/forms/
 
 [Form API]: https://docs.djangoproject.com/en/1.11/ref/forms/api/
 
@@ -95,12 +95,12 @@
 
 	- Authentication
 
-		- [Overview]
+		- [Overview][authentication-overview]
 		- [Using the authentication system]
 		- [Customizing authentication]
 		- [API Reference]
 
-[Overview]: https://docs.djangoproject.com/en/1.11/topics/auth/
+[authentication-overview]: https://docs.djangoproject.com/en/1.11/topics/auth/
 
 [Using the authentication system]: https://docs.djangoproject.com/en/1.11/topics/auth/default/
 

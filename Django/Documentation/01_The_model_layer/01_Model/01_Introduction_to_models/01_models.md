@@ -1,10 +1,6 @@
-# Django_The model layer 정리
-
-### Models: Introduction to models
+### Models
 
 <br>
-
-*__Models__*
 
 - 모델은 **데이터**에 대한 **단일 정보 소스**입니다. 여기에는 저장중인 데이터의 **필수 필드**와 **동작**이 포함됩니다. 일반적으로 **각 모델은 단일 데이터베이스 테이블에 매핑**됩니다.
 
@@ -1028,8 +1024,7 @@
 
 -
 
-- *__Differences between proxy inheritance and unmanaged models
-__*
+- *__Differences between proxy inheritance and unmanaged models__*
 
 - 모델 클래스를 하나 선언해서 managed=False 옵션을 주면, 해당 모델은 자동으로 테이블을 생성하지 않게 됩니다. 직접 테이블을 만들어 주어야 합니다. 그런데 여기에 db_table 옵션에 기존에 존재하는 모델의 테이블 이름을 지정하게 되면 어떨까요? proxy 모델과 거의 비슷해 보입니다.
 

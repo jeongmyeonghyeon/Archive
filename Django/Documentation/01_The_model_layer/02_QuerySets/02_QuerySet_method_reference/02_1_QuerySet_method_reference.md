@@ -1,6 +1,6 @@
-# Django_The model layer 정리
+### QuerySet API reference - 2
 
-### QuerySets: QuerySet method reference
+<br>
 
 *__Methods that do not return QuerySets__*  
 *__(QuerySet를 반환하지 않는 메서드)__*
