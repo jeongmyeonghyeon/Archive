@@ -1,0 +1,156 @@
+### EC2를 사용해 배포하기
+
+- [배포 체크리스트 : 장고문서][Deployment checklist]
+
+	> 배포 이후 보안상의 이유로 관리가 필요한 설정들의 값을  
+	> JSON 포맷을 사용해 값을 사용하기 위한 작업이다.  
+	>   
+	> 해당 실습에서는 아래의 세 가지 설정만 수정하여 사용했다.
+
+	- SECRET_KEY
+	- DEBUG
+	- ALLOWED_HOSTS
+		
+	1. `container/` 하위에 **설정값**들을 보관할 `.config_secret/` 생성
+
+		> 디렉토리 이름 가장 앞 부분에 `.`을 입력해 숨김파일로 생성하고, `.gitignore`에 추가한다.
+		
+		```
+		conatainer/
+			.config_secret/
+			django_app/
+			.gitignore
+			.requirements.txt
+		```
+		
+	2. `.config_secret/`에 이후 불러올 json파일을 생성한다. 해당 실습에서는 세개의 파일을 생성했다.
+
+		```
+		conatainer/
+			.config_secret/
+				settings_common.json
+				settings_debug.json
+				settings_deploy.json
+			django_app/
+			.gitignore
+			.requirements.txt
+		```
+		```
+		[settings_common.json]
+		
+		{
+		  "django": {
+		    "secret_key": "abcdfhijklmnopqrstuvwxyz4g^*1q11p(+7=(22^d*qnp8q^f"
+		  }
+		}
+		```
+		```
+		[settings_debug.json/settings_deploy.json]
+		
+		{
+		  "django": {
+		    "allowed_host": [
+		      "*"
+		    ]
+		  }
+		}
+		```
+	
+	3. 기존의 `settings.py`를 패키지를 사용해 여러개의 setting을 사용할 수 있도록 만든다. (기본 세팅파일로 `base.py`를 추가하였다.)
+
+		```
+		conatainer/
+			.config_secret/
+				settings_common.json
+				settings_debug.json
+				settings_deploy.json
+			django_app/
+				config/
+					settings/
+						__init__.py
+						base.py
+					__init__.py
+					urls.py
+					wsgi.py
+					manage.py
+			.gitignore
+			.requirements.txt
+		```
+		
+		> 기존의 `settings.py`는 삭제한다.
+
+	4. `os.path.dirname`과 `os.path.join`을 사용해 설정 json파일들의 경로를 구한다.
+
+		```
+		BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+		ROOT_DIR = os.path.dirname(BASE_DIR)
+		
+		# .config_secret의 경로
+		CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
+		
+		# 설정 json파일들의 경로
+		CONFIG_SECRET_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_common.json')
+CONFIG_SECRET_DEBUG_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_debug.json')
+CONFIG_SECRET_DEPLOY_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_deploy.json')
+		```
+		
+	5. `json.loads`와 `open(directory_name).read()`를 사용해 json파일을 dict로 불러와 해당 변수에 할당한다.
+		
+		> `json.loads`는 `open(directory_name).read()`를 통해 읽어온 str을 dict로 바꿔준다. 그래서 파이썬에서 사용할 수 있다.
+		>
+		> [참고: JSON to Dict][JSON_to_Dict]
+		
+		```
+		config_secret_common = json.loads(open(CONFIG_SECRET_COMMON_FILE).read())
+		config_secret_debug = json.loads(open(CONFIG_SECRET_DEBUG_FILE).read())
+		```
+	
+	6. 할당한 dict를 기존 설정에 넣어준다.
+
+		```
+		SECRET_KEY = config_secret_common['django']['secret_key']
+		ALLOWED_HOSTS = config_secret_debug['django']['allowed_host']
+		```
+		
+	7. 새로운 세팅을 만들고 기존에 `base.py`의 모든 설정값을 불러와 따로 관리할 setting을 추가한다. (실습에서는 `debug.py`를 추가하였다.)
+
+		```
+		conatainer/
+			.config_secret/
+				settings_common.json
+				settings_debug.json
+				settings_deploy.json
+			django_app/
+				config/
+					settings/
+						__init__.py
+						base.py
+						debug.py
+					__init__.py
+					urls.py
+					wsgi.py
+					manage.py
+			.gitignore
+			.requirements.txt
+		```
+		```
+		[debug.py]
+		
+		from .base import *
+
+		config_secret_debug = json.loads(open(CONFIG_SECRET_DEBUG_FILE).read())
+		
+		DEBUG = True
+		
+		ALLOWED_HOSTS = config_secret_debug['django']['allowed_host']
+		```
+		
+	8. `./manage.py runserver settings=config.settings.debug`명령으로 해당 세팅의 서버를 실행한다.
+
+	9. 마지막으로 프로젝트 관련 내용에 대한 `README.md`를 추가한다.[README.md example]
+
+[Deployment checklist]: https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
+
+[JSON_to_Dict]: https://godjango.com/blog/working-with-json-and-django/
+
+[README.md example]: 
