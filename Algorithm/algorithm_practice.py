@@ -1,21 +1,14 @@
-# findKim 함수(메소드)는 String형 배열 seoul을 매개변수로 받습니다.
-#
-# seoul의 element중 "Kim"의 위치 x를 찾아, "김서방은 x에 있다"는 String을 반환하세요.
-# seoul에 "Kim"은 오직 한 번만 나타나며 잘못된 값이 입력되는 경우는 없습니다.
+def gcdlcm(a, b):
+    yaksoo_a = []
+    yaksoo_b = []
+    for i in range(a):
+        if a % (i+1) == 0:
+            yaksoo_a.append(i+1)
+    for i in range(b):
+        if b % (i+1) == 0:
+            yaksoo_b.append(i+1)
 
+    return yaksoo_b
 
-def findKim(seoul):
-    kimIdx = 0
-    # 함수를 완성하세요
-    for name in seoul:
-        if name == "Kim":
-            kimIdx = seoul.index(name)
-
-    return "김서방은 {}에 있다".format(kimIdx)
-
-
-# 실행을 위한 테스트코드입니다.
-print(findKim(["Queen", "Tod", "Kim"]))
-
-# 문자열 곱하기는 아니고...
-# 슬라이스로 해야겠냉
+# 아래는 테스트로 출력해 보기 위한 코드입니다.
+print(gcdlcm(3,12))
